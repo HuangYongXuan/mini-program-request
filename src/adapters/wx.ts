@@ -1,42 +1,42 @@
-import {AxiosRequestConfig, WxRequestTask} from "../config/HttpConfig";
+import {AxiosAdapter, AxiosPromise, AxiosRequestConfig} from "../config/HttpConfig";
+import buildURL from "../helpers/buildURL";
+import createError from "../core/createError";
+import settle from "../core/settle";
 
-class HttpAdapter {
+export default class WxHttpAdapter implements AxiosAdapter {
     config: AxiosRequestConfig;
-    private task: WxRequestTask;
+    timer: any;
 
-    constructor(config: AxiosRequestConfig) {
-        this.config = config;
-    }
+    init(config: AxiosRequestConfig): AxiosPromise<any> {
+        return new Promise(function (resolve, reject) {
+            let requestData = config.data;
+            let requestHeaders = config.headers;
 
-    open() {
-        return new Promise((resolve, reject) => {
             // @ts-ignore
-            this.task = wx.request({
-                url: this.config.url,
-                data: this.config.data,
-                header: this.config.headers,
-                method: this.config.method.toLocaleUpperCase,
-                dateType: 'json',
-                responseType: this.config.responseType,
-                success: (data: any, statusCode: number, header: any) => {
-                    let response = {
+            wx.request({
+                url: buildURL(config.url, config.params, config.paramsSerializer),
+                data: config.data,
+                header: requestHeaders,
+                method: config.method.toLocaleUpperCase(),
+                dataType: 'json',
+                responseType: config.responseType,
+                success: (data: any, statusCode: number, headers: any) => {
+                    let response: { headers: any; request?: undefined; data: any; statusText: string; config: AxiosRequestConfig; status: number };
+                    response = {
                         data: data,
                         status: statusCode,
-                        header: header,
-                        config: this.config
+                        statusText: statusCode.toString(),
+                        headers: headers,
+                        config: config,
+                        request: undefined
                     };
-                    if (statusCode >= 200 || statusCode < 300) {
-                        resolve(response);
-                    } else {
-                        reject(response);
-                    }
+                    settle(resolve, reject, response);
                 },
                 fail: () => {
-                    reject(new Error('Network Error'))
-                },
-                complete: () => {
+                    reject(createError('http error', config))
                 }
-            });
-        });
+            })
+        })
     }
+
 }

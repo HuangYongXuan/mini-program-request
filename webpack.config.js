@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
 	entry: './src/index.ts',
-	devtool: "inline-source-map",
+	devtool: "source-map",
 	module: {
 		rules: [
 			{
@@ -20,6 +20,12 @@ module.exports = {
 	},
 	output: {
 		filename: 'axios.js',
-		path: path.resolve(__dirname, 'dist')
+		path: path.resolve(__dirname, 'dist'),
+		sourceMapFilename: 'axios.js.map',
+		library: 'axios',
+		libraryTarget: 'umd'
+	},
+	node: {
+		process: false,
 	}
 };

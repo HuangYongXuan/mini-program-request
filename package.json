@@ -14,12 +14,14 @@
     "build": "webpack --config webpack.config.js --mode production"
   },
   "devDependencies": {
+    "follow-redirects": "^1.7.0",
     "ts-loader": "^6.0.4",
     "typescript": "^3.5.3",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6"
   },
   "dependencies": {
+    "is-buffer": "^2.0.3",
     "wechat-jssdk": "^5.0.2"
   }
 }

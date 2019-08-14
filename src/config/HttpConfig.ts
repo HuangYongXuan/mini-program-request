@@ -3,7 +3,10 @@ export interface AxiosTransformer {
 }
 
 export interface AxiosAdapter {
-    (config: AxiosRequestConfig): AxiosPromise<any>;
+    timer: any;
+    config: AxiosRequestConfig;
+
+    init(config: AxiosRequestConfig): AxiosPromise<any>;
 }
 
 export interface AxiosBasicCredentials {
@@ -40,7 +43,7 @@ export type DataType =
 
 export interface AxiosRequestConfig {
     url?: string;
-    method?: Method;
+    method?: Method | string;
     baseURL?: string;
     transformRequest?: AxiosTransformer | AxiosTransformer[];
     transformResponse?: AxiosTransformer | AxiosTransformer[];
@@ -50,9 +53,9 @@ export interface AxiosRequestConfig {
     data?: any;
     timeout?: number;
     withCredentials?: boolean;
-    adapter?: AxiosAdapter;
+    adapter?: Function;
     auth?: AxiosBasicCredentials;
-    responseType?: ResponseType;
+    responseType?: ResponseType | string;
     xsrfCookieName?: string;
     xsrfHeaderName?: string;
     onUploadProgress?: (progressEvent: any) => void;
@@ -65,6 +68,8 @@ export interface AxiosRequestConfig {
     httpsAgent?: any;
     proxy?: AxiosProxyConfig | false;
     cancelToken?: CancelToken;
+    transport?: any;
+    responseEncoding?: any;
 }
 
 export interface AxiosResponse<T = any> {
@@ -82,6 +87,7 @@ export interface AxiosError<T = any> extends Error {
     request?: any;
     response?: AxiosResponse<T>;
     isAxiosError: boolean;
+    toJSON: Function
 }
 
 export interface AxiosPromise<T = any> extends Promise<AxiosResponse<T>> {
@@ -119,6 +125,8 @@ export interface CancelTokenSource {
 
 export interface AxiosInterceptorManager<V> {
     use(onFulfilled?: (value: V) => V | Promise<V>, onRejected?: (error: any) => any): number;
+
+    forEach(fn: Function): void;
 
     eject(id: number): void;
 }
@@ -198,6 +206,20 @@ export interface WxRequestTask {
     offHeadersReceived(callback: Function): any;
 
     onHeadersReceived(callback: OnHeadersReceivedCallback): any;
+}
+
+export interface HttpOptions {
+    path: string;
+    method: Method | string;
+    headers: any;
+    agent: string;
+    auth: any;
+    socketPath?: string;
+    hostname?: string;
+    host?: string;
+    port?: string | number;
+    maxRedirects: number;
+    maxBodyLength: number
 }
 
 declare const Axios: AxiosStatic;

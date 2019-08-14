@@ -1,11 +1,18 @@
 import utils from "../utils";
+import {AxiosInterceptorManager} from "../config/HttpConfig";
 
-class InterceptorManager {
-    handlers: any[];
+export interface InterceptorManagerHandler {
+    fulfilled: Function,
+    rejected: Function
+}
+
+export default class InterceptorManager implements AxiosInterceptorManager<any> {
+    handlers: InterceptorManagerHandler[];
 
     constructor() {
         this.handlers = [];
     }
+
 
     /**
      * 添加拦截器
