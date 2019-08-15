@@ -435,9 +435,11 @@ axios 依赖原生的 ES6 Promise 实现而被支持.
 
 ####TypeScript
 axios includes TypeScript definitions.
-```
+````javascript
 import axios from 'axios';
 axios.get('/user?ID=12345');
+````
+````
 Resources
 Changelog
 Upgrade Guide
@@ -446,6 +448,6 @@ Contributing Guide
 Code of Conduct
 Credits
 axios is heavily inspired by the $http service provided in Angular. Ultimately axios is an effort to provide a standalone $http-like service for use outside of Angular.
-```
+````
 ####License
 MIT
