@@ -1,14 +1,14 @@
-#wx-request
+# wx-request
 
-####使用 npm:
+#### 使用 npm:
 
 `$ npm install axios`
 
-####使用 bower:
+#### 使用 bower:
 
 `$ bower install axios`
 
-####执行 GET 请求
+#### 执行 GET 请求
 
 // 为给定 ID 的 user 创建请求
 ````javascript
@@ -35,7 +35,7 @@ axios.get('/user', {
     console.log(error);
   });
 ````
-####执行 POST 请求
+#### 执行 POST 请求
 ````javascript
 axios.post('/user', {
     firstName: 'Fred',
@@ -48,7 +48,7 @@ axios.post('/user', {
     console.log(error);
   });
 ````
-####执行多个并发请求
+#### 执行多个并发请求
 ````javascript
 function getUserAccount() {
   return axios.get('/user/12345');
@@ -64,7 +64,7 @@ axios.all([getUserAccount(), getUserPermissions()])
   }));
 ````
 axios API
-####可以通过向 axios 传递相关配置来创建请求
+#### 可以通过向 axios 传递相关配置来创建请求
 ````javascript
 axios(config)
 ````
@@ -84,7 +84,7 @@ axios(url[params, config])
 ````javascript
 axios('/user/12345');
 ````
-####请求方法的别名
+#### 请求方法的别名
 为方便起见，为所有支持的请求方法提供了别名
 ````javascript
 axios.request(config)
@@ -95,16 +95,16 @@ axios.post(url[, data[, config]])
 axios.put(url[, data[, config]])
 axios.patch(url[, data[, config]])
 ````
-####NOTE
+#### NOTE
 在使用别名方法时， url、method、data 这些属性都不必在配置中指定。
 
-####并发
+#### 并发
 处理并发请求的助手函数
 ````javascript
 axios.all(iterable)
 axios.spread(callback)
 ````
-####创建实例
+#### 创建实例
 可以使用自定义配置新建一个 axios 实例
 ````javascript
 axios.create([config])
@@ -114,7 +114,7 @@ var instance = axios.create({
   headers: {'X-Custom-Header': 'foobar'}
 });
 ````
-####实例方法
+#### 实例方法
 以下是可用的实例方法。指定的配置将与实例的配置合并
 ````javascript
 axios#request(config)
@@ -125,7 +125,7 @@ axios#post(url[, data[, config]])
 axios#put(url[, data[, config]])
 axios#patch(url[, data[, config]])
 ````
-####请求配置
+#### 请求配置
 这些是创建请求时可以用的配置选项。只有 url 是必需的。如果没有指定 method，请求将默认使用 get 方法。
 
 ````javascript
@@ -288,7 +288,7 @@ axios.get('/user/12345')
 ````
 在使用 catch 时，或传递 rejection callback 作为 then 的第二个参数时，响应可以通过 error 对象可被使用，正如在错误处理这一节所讲。
 
-####配置的默认值/defaults
+#### 配置的默认值/defaults
 你可以指定将被用在各个请求的配置默认值
 
 ###全局的 axios 默认值
@@ -297,7 +297,7 @@ axios.defaults.baseURL = 'https://api.example.com';
 axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 ````
-####自定义实例默认值
+#### 自定义实例默认值
 // 创建实例时设置配置的默认值
 ````javascript
 var instance = axios.create({
@@ -330,7 +330,7 @@ instance.get('/longRequest', {
   timeout: 5000
 });
 ````
-####拦截器
+#### 拦截器
 在请求或响应被 then 或 catch 处理前拦截它们。
 
 // 添加请求拦截器
@@ -363,7 +363,7 @@ axios.interceptors.request.eject(myInterceptor);
 var instance = axios.create();
 instance.interceptors.request.use(function () {/*...*/});
 ````
-####错误处理
+#### 错误处理
 ````javascript
 axios.get('/user/12345')
   .catch(function (error) {
@@ -387,7 +387,7 @@ axios.get('/user/12345', {
   }
 })
 ````
-####取消
+#### 取消
 使用 cancel token 取消请求
 
 Axios 的 cancel token API 基于cancelable promises proposal，它还处于第一阶段。
@@ -426,17 +426,17 @@ axios.get('/user/12345', {
 // 取消请求
 cancel();
 ````
-####Note : 
+#### Note : 
 可以使用同一个 cancel token 取消多个请求
 
-####Semver
+#### Semver
 Until axios reaches a 1.0 release, breaking changes will be released with a new minor version. For example 0.5.1, and 0.5.4 will have the same API, but 0.6.0 will have breaking changes.
 
-####Promises
+#### Promises
 axios 依赖原生的 ES6 Promise 实现而被支持.
 如果你的环境不支持 ES6 Promise，你可以使用 polyfill.
 
-####TypeScript
+#### TypeScript
 axios includes TypeScript definitions.
 ````javascript
 import axios from 'axios';
@@ -452,5 +452,5 @@ axios.get('/user?ID=12345');
     Credits
     axios is heavily inspired by the $http service provided in Angular. Ultimately axios is an effort to provide a standalone $http-like service for use outside of Angular.
 
-####License
+#### License
 MIT
