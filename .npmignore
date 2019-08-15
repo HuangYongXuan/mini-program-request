@@ -1,0 +1,6 @@
+# Created by .ignore support plugin (hsz.mobi)
+dist/index.html
+dist/axios.js.map
+test
+node_modules
+.idea

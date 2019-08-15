@@ -2,7 +2,7 @@
   "name": "mini-program-request",
   "version": "1.0.0",
   "description": "小程序版的Axios",
-  "main": "src/index.ts",
+  "main": "dist/axios.js",
   "repository": "https://github.com/Ysll233/mini-program-request.git",
   "author": "754060604@qq.com",
   "license": "MIT",
