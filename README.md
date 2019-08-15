@@ -11,7 +11,7 @@
 ####执行 GET 请求
 
 // 为给定 ID 的 user 创建请求
-```
+````javascript
 axios.get('/user?ID=12345')
   .then(function (response) {
     console.log(response);
@@ -19,9 +19,10 @@ axios.get('/user?ID=12345')
   .catch(function (error) {
     console.log(error);
   });
-```
+````
 // 可选地，上面的请求可以这样做
-```
+
+````javascript
 axios.get('/user', {
     params: {
       ID: 12345
@@ -33,9 +34,9 @@ axios.get('/user', {
   .catch(function (error) {
     console.log(error);
   });
-```
+````
 ####执行 POST 请求
-```
+````javascript
 axios.post('/user', {
     firstName: 'Fred',
     lastName: 'Flintstone'
@@ -46,9 +47,9 @@ axios.post('/user', {
   .catch(function (error) {
     console.log(error);
   });
-```
+````
 ####执行多个并发请求
-```
+````javascript
 function getUserAccount() {
   return axios.get('/user/12345');
 }
@@ -61,14 +62,14 @@ axios.all([getUserAccount(), getUserPermissions()])
   .then(axios.spread(function (acct, perms) {
     // 两个请求现在都执行完成
   }));
-```
+````
 axios API
 ####可以通过向 axios 传递相关配置来创建请求
-```
+````javascript
 axios(config)
-```
+````
 // 发送 POST 请求
-```
+````javascript
 axios({
   method: 'post',
   url: '/user/12345',
@@ -77,15 +78,15 @@ axios({
     lastName: 'Flintstone'
   }
 });
-axios(url[, config])
-```
+axios(url[params, config])
+````
 // 发送 GET 请求（默认的方法）
-```
+````javascript
 axios('/user/12345');
-```
+````
 ####请求方法的别名
 为方便起见，为所有支持的请求方法提供了别名
-```
+````javascript
 axios.request(config)
 axios.get(url[, config])
 axios.delete(url[, config])
@@ -93,29 +94,29 @@ axios.head(url[, config])
 axios.post(url[, data[, config]])
 axios.put(url[, data[, config]])
 axios.patch(url[, data[, config]])
-```
+````
 ####NOTE
 在使用别名方法时， url、method、data 这些属性都不必在配置中指定。
 
 ####并发
 处理并发请求的助手函数
-```
+````javascript
 axios.all(iterable)
 axios.spread(callback)
-```
+````
 ####创建实例
 可以使用自定义配置新建一个 axios 实例
-```
+````javascript
 axios.create([config])
 var instance = axios.create({
   baseURL: 'https://some-domain.com/api/',
   timeout: 1000,
   headers: {'X-Custom-Header': 'foobar'}
 });
-```
+````
 ####实例方法
 以下是可用的实例方法。指定的配置将与实例的配置合并
-```
+````javascript
 axios#request(config)
 axios#get(url[, config])
 axios#delete(url[, config])
@@ -123,12 +124,12 @@ axios#head(url[, config])
 axios#post(url[, data[, config]])
 axios#put(url[, data[, config]])
 axios#patch(url[, data[, config]])
-```
+````
 ####请求配置
 这些是创建请求时可以用的配置选项。只有 url 是必需的。如果没有指定 method，请求将默认使用 get 方法。
 
-```
-{
+````javascript
+let config = {
   // `url` 是用于请求的服务器 URL
   url: '/user',
 
@@ -242,7 +243,7 @@ axios#patch(url[, data[, config]])
   proxy: {
     host: '127.0.0.1',
     port: 9000,
-    auth: : {
+    auth: {
       username: 'mikeymike',
       password: 'rapunz3l'
     }
@@ -253,11 +254,11 @@ axios#patch(url[, data[, config]])
   cancelToken: new CancelToken(function (cancel) {
   })
 }
-```
+````
 ###响应结构
 某个请求的响应包含以下信息
-```
-{
+````javascript
+let response = {
   // `data` 由服务器提供的响应
   data: {},
 
@@ -273,9 +274,9 @@ axios#patch(url[, data[, config]])
   // `config` 是为请求提供的配置信息
   config: {}
 }
-```
+````
 使用 then 时，你将接收下面这样的响应：
-```
+````javascript
 axios.get('/user/12345')
   .then(function(response) {
     console.log(response.data);
@@ -284,54 +285,56 @@ axios.get('/user/12345')
     console.log(response.headers);
     console.log(response.config);
   });
-```
+````
 在使用 catch 时，或传递 rejection callback 作为 then 的第二个参数时，响应可以通过 error 对象可被使用，正如在错误处理这一节所讲。
 
 ####配置的默认值/defaults
 你可以指定将被用在各个请求的配置默认值
 
 ###全局的 axios 默认值
-```
+````javascript
 axios.defaults.baseURL = 'https://api.example.com';
 axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-```
+````
 ####自定义实例默认值
 // 创建实例时设置配置的默认值
-```
+````javascript
 var instance = axios.create({
   baseURL: 'https://api.example.com'
 });
-```
+````
 
 // 在实例已创建后修改默认值
-```
+````javascript
 instance.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-```
+````
 ###配#置的优先顺序
 配置会以一个优先顺序进行合并。这个顺序是：在 `lib/defaults.js` 找到的库的默认值，然后是实例的 defaults 属性，最后是请求的 config 参数。后者将优先于前者。这里是一个例子：
 
 // 使用由库提供的配置的默认值来创建实例
 // 此时超时配置的默认值是 `0`
-```
+````javascript
 var instance = axios.create();
-```
+````
 
 // 覆写库的超时默认值
-// 现在，在超时前，所有请求都会等待 2.5 秒
-```
+// 现在，在超时前，所有请求都会等待 2.5 秒 (小程序不支持)
+````javascript
 instance.defaults.timeout = 2500;
-```
+````
 
 // 为已知需要花费很长时间的请求覆写超时设置
+````javascript
 instance.get('/longRequest', {
   timeout: 5000
 });
+````
 ####拦截器
 在请求或响应被 then 或 catch 处理前拦截它们。
 
 // 添加请求拦截器
-```
+````javascript
 axios.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
     return config;
@@ -339,9 +342,9 @@ axios.interceptors.request.use(function (config) {
     // 对请求错误做些什么
     return Promise.reject(error);
   });
-```
+````
 // 添加响应拦截器
-```
+````javascript
 axios.interceptors.response.use(function (response) {
     // 对响应数据做点什么
     return response;
@@ -349,19 +352,19 @@ axios.interceptors.response.use(function (response) {
     // 对响应错误做点什么
     return Promise.reject(error);
   });
-```
+````
 如果你想在稍后移除拦截器，可以这样：
-```
+````javascript
 var myInterceptor = axios.interceptors.request.use(function () {/*...*/});
 axios.interceptors.request.eject(myInterceptor);
-```
+````
 可以为自定义 axios 实例添加拦截器
-```
+````javascript
 var instance = axios.create();
 instance.interceptors.request.use(function () {/*...*/});
-```
+````
 ####错误处理
-```
+````javascript
 axios.get('/user/12345')
   .catch(function (error) {
     if (error.response) {
@@ -375,22 +378,22 @@ axios.get('/user/12345')
     }
     console.log(error.config);
   });
-```
+````
 可以使用 validateStatus 配置选项定义一个自定义 HTTP 状态码的错误范围。
-```
+````javascript
 axios.get('/user/12345', {
   validateStatus: function (status) {
     return status < 500; // 状态码在大于或等于500时才会 reject
   }
 })
-```
-取消
+````
+####取消
 使用 cancel token 取消请求
 
 Axios 的 cancel token API 基于cancelable promises proposal，它还处于第一阶段。
 
 可以使用 CancelToken.source 工厂方法创建 cancel token，像这样：
-```
+````javascript
 var CancelToken = axios.CancelToken;
 var source = CancelToken.source();
 
@@ -403,13 +406,13 @@ axios.get('/user/12345', {
     // 处理错误
   }
 });
-```
+````
 // 取消请求（message 参数是可选的）
-```
+````javascript
 source.cancel('Operation canceled by the user.');
-```
+````
 还可以通过传递一个 executor 函数到 CancelToken 的构造函数来创建 cancel token：
-```
+````javascript
 var CancelToken = axios.CancelToken;
 var cancel;
 
@@ -422,7 +425,7 @@ axios.get('/user/12345', {
 
 // 取消请求
 cancel();
-```
+````
 ####Note : 
 可以使用同一个 cancel token 取消多个请求
 
@@ -439,15 +442,15 @@ axios includes TypeScript definitions.
 import axios from 'axios';
 axios.get('/user?ID=12345');
 ````
-````
-Resources
-Changelog
-Upgrade Guide
-Ecosystem
-Contributing Guide
-Code of Conduct
-Credits
-axios is heavily inspired by the $http service provided in Angular. Ultimately axios is an effort to provide a standalone $http-like service for use outside of Angular.
-````
+
+    Resources
+    Changelog
+    Upgrade Guide
+    Ecosystem
+    Contributing Guide
+    Code of Conduct
+    Credits
+    axios is heavily inspired by the $http service provided in Angular. Ultimately axios is an effort to provide a standalone $http-like service for use outside of Angular.
+
 ####License
 MIT
