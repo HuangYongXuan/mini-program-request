@@ -1,6 +1,6 @@
 import utils from "../utils";
 
-export default (
+const cookie = (
     utils.isStandardBrowserEnv() ?
         (function standardBrowserEnv() {
             return {
@@ -49,3 +49,7 @@ export default (
             };
         })()
 );
+
+export default cookie;
+
+module.exports = cookie;

@@ -15,8 +15,7 @@ function throwIfCancellationRequested(config: AxiosRequestConfig) {
 
 export default function dispatchRequest(config: AxiosRequestConfig) {
     throwIfCancellationRequested(config);
-
-    if (config.baseURL && isAbsoluteURL(config.url)) {
+    if (config.baseURL && !isAbsoluteURL(config.url)) {
         config.url = combineURLs(config.baseURL, config.url);
     }
 

@@ -13,22 +13,22 @@ export default class WxHttpAdapter implements AxiosAdapter {
             let requestHeaders = config.headers;
 
             // @ts-ignore
-            wx.request({
+            let requestTask = wx.request({
                 url: buildURL(config.url, config.params, config.paramsSerializer),
                 data: config.data,
                 header: requestHeaders,
                 method: config.method.toLocaleUpperCase(),
                 dataType: 'json',
                 responseType: config.responseType,
-                success: (data: any, statusCode: number, headers: any) => {
+                success: (res: any) => {
                     let response: { headers: any; request?: undefined; data: any; statusText: string; config: AxiosRequestConfig; status: number };
                     response = {
-                        data: data,
-                        status: statusCode,
-                        statusText: statusCode.toString(),
-                        headers: headers,
+                        data: res.data,
+                        status: res.statusCode,
+                        statusText: res.statusCode + '',
+                        headers: res.header,
                         config: config,
-                        request: undefined
+                        request: requestTask
                     };
                     settle(resolve, reject, response);
                 },

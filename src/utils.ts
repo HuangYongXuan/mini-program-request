@@ -1,6 +1,6 @@
 import bind from './helpers/bind';
 // @ts-ignore
-import isBuffer from 'is-buffer';
+const isBuffer = require('is-buffer');
 /*global toString:true*/
 const toString = Object.prototype.toString;
 

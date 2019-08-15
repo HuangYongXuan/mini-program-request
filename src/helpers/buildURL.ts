@@ -15,7 +15,7 @@ export default function buildURL(url: string, params?: object, paramsSerializer?
     } else if (utils.isURLSearchParams(params)) {
         serializedParams = params.toString();
     } else {
-        let parts: [any];
+        let parts: any[] = [];
 
         utils.forEach(params, function serialize(val: any, key: any) {
             if (val === null || typeof val === 'undefined') {

@@ -6,7 +6,7 @@ import settle from "../core/settle";
 import createError from "../core/createError";
 import isURLSameOrigin from "../helpers/isURLSameOrigin";
 
-export default class XhrAdapter implements AxiosAdapter{
+export default class XhrAdapter implements AxiosAdapter {
     config: AxiosRequestConfig;
     timer: any;
 
@@ -28,7 +28,9 @@ export default class XhrAdapter implements AxiosAdapter{
                 requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
             }
 
-            request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
+            let url = buildURL(config.url, config.params, config.paramsSerializer);
+
+            request.open(config.method.toUpperCase(), url, true);
 
             // Set the request timeout in MS
             request.timeout = config.timeout;

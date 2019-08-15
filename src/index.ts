@@ -5,12 +5,11 @@ import utils from "./utils";
 import defaults from "./defaults";
 import mergeConfig from "./core/mergeConfig";
 
-
 /**
  *
  * @param defaultConfig
  */
-function createInstance(defaultConfig: AxiosRequestConfig | object): Axios {
+function createInstance(defaultConfig: AxiosRequestConfig | object): any {
     let context = new Axios(defaultConfig);
     let instance = bind(Axios.prototype.request, context);
 
@@ -18,7 +17,6 @@ function createInstance(defaultConfig: AxiosRequestConfig | object): Axios {
 
     utils.extend(instance, context);
 
-    // @ts-ignore
     return instance;
 }
 
@@ -29,7 +27,9 @@ axios.Axios = Axios;
 // Factory for creating new instances
 // @ts-ignore
 axios.create = function create(instanceConfig: AxiosRequestConfig) {
-    return createInstance(mergeConfig(axios.defaults, instanceConfig));
+    let config = mergeConfig(axios.defaults, instanceConfig);
+    console.info(config);
+    return createInstance(config);
 };
 
 // Expose Cancel & CancelToken
@@ -47,6 +47,5 @@ axios.all = function all(promises) {
 };
 // @ts-ignore
 axios.spread = require('./helpers/spread');
-
-
-export default axios;
+// @ts-ignore
+module.exports = axios;

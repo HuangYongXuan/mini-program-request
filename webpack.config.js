@@ -1,8 +1,9 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: './src/index.ts',
-	devtool: "source-map",
+	devtool: 'source-map',
 	module: {
 		rules: [
 			{
@@ -26,6 +27,15 @@ module.exports = {
 		libraryTarget: 'umd'
 	},
 	node: {
-		process: false,
-	}
+		process: false
+	},
+	devServer: {
+		contentBase: path.join(__dirname, 'dist'),
+		compress: true,
+		port: 9000,
+		index: 'index.html',
+	},
+	plugins: [
+		new HtmlWebpackPlugin()
+	]
 };
