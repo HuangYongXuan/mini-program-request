@@ -406,6 +406,9 @@ axios.get('/user/12345', {
     // 处理错误
   }
 });
+
+// 小程序可以 requestTask取消请求
+source.token.requestTask.abort()
 ````
 // 取消请求（message 参数是可选的）
 ````javascript

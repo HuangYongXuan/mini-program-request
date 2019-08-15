@@ -111,9 +111,18 @@ export interface CancelTokenStatic {
     source(): CancelTokenSource;
 }
 
+export interface WxRequestTask {
+    abort(): void;
+
+    offHeadersReceived(): void;
+
+    onHeadersReceived(): void;
+}
+
 export interface CancelToken {
     promise: Promise<Cancel>;
     reason?: Cancel;
+    requestTask?: WxRequestTask | any;
 
     throwIfRequested(): void;
 }

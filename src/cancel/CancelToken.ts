@@ -31,7 +31,11 @@ export default class CancelToken {
         let cancel: Function;
         let token = new CancelToken(function (c: Function) {
             cancel = c;
-        })
+        });
+        return {
+            token,
+            cancel: cancel
+        }
     }
 }
 

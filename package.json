@@ -1,6 +1,6 @@
 {
   "name": "@linhan/axios",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "小程序版的Axios 用type script写的 支持浏览器的xhr请求",
   "main": "dist/axios.js",
   "typings": "src/config/HttpConfig.ts",

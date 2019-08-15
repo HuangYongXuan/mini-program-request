@@ -32,9 +32,9 @@ axios.create = function create(instanceConfig: AxiosRequestConfig) {
 
 // Expose Cancel & CancelToken
 // @ts-ignore
-axios.Cancel = require('./cancel/Cancel');
+axios.Cancel = require('./cancel/Cancel').default;
 // @ts-ignore
-axios.CancelToken = require('./cancel/CancelToken');
+axios.CancelToken = require('./cancel/CancelToken').default;
 // @ts-ignore
 axios.isCancel = require('./cancel/isCancel');
 

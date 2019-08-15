@@ -34,8 +34,15 @@ export default class WxHttpAdapter implements AxiosAdapter {
                 },
                 fail: () => {
                     reject(createError('http error', config))
+                },
+                complete: () => {
+                    console.info('complete')
                 }
-            })
+            });
+
+            if (!!config.cancelToken) {
+                config.cancelToken.requestTask = requestTask;
+            }
         })
     }
 
