@@ -27,9 +27,7 @@ axios.Axios = Axios;
 // Factory for creating new instances
 // @ts-ignore
 axios.create = function create(instanceConfig: AxiosRequestConfig) {
-    let config = mergeConfig(axios.defaults, instanceConfig);
-    console.info(config);
-    return createInstance(config);
+    return createInstance(mergeConfig(axios.defaults, instanceConfig));
 };
 
 // Expose Cancel & CancelToken
