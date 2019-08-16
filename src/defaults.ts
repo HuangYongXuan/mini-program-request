@@ -1,34 +1,18 @@
 import utils from "./utils";
 import normalizeHeaderName from "./helpers/normalizeHeaderName";
 import WxHttpAdapter from "./adapters/wx";
-import {AxiosAdapter} from "./config/HttpConfig";
+import {AxiosAdapter, AxiosRequestConfig} from "./config/HttpConfig";
 import XhrAdapter from "./adapters/xhr";
+// import HttpAdapter from "./adapters/http"
 
-const DEFAULT_CONTENT_TYPE = {
-    'Content-type': 'application/x-www-urlencoded'
-};
-
-function setContentTypeIfUnset(headers: any, value: string) {
-    if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
-        headers['Content-Type'] = value;
-    }
-}
-
-function getDefaultAdapter(): Function {
-    let instance: AxiosAdapter;
-    if (typeof XMLHttpRequest !== 'undefined') {
-        instance = new XhrAdapter();
-    } else {
-        instance = new WxHttpAdapter();
-    }
-    return instance.init;
-}
-
-let defaults = {
+let defaults: AxiosRequestConfig = {
     adapter: getDefaultAdapter(),
-    headers: Object(),
-
-    transformRequest: [function transformRequest(data: any, headers: any) {
+    headers: {
+        common: {
+            'Accept': 'application/json, text/plain, */*'
+        }
+    },
+    transformRequest: [function (data: any, headers: {}) {
         normalizeHeaderName(headers, 'Accept');
         normalizeHeaderName(headers, 'Content-Type');
         if (utils.isFormData(data) ||
@@ -52,7 +36,7 @@ let defaults = {
         }
         return data;
     }],
-    transformResponse: [function transformResponse(data: any) {
+    transformResponse: [function (data: any) {
         if (typeof data === 'string') {
             try {
                 data = JSON.parse(data)
@@ -62,23 +46,34 @@ let defaults = {
         return data;
     }],
     timeout: 0,
-
     xsrfCookieName: 'XSRF-TOKEN',
     xsrfHeaderName: 'X-XSRF-TOKEN',
-
     maxContentLength: -1,
-
-
     validateStatus: function validateStatus(status: number) {
         return status >= 200 && status < 300;
     }
 };
 
-defaults.headers = {
-    common: {
-        'Accept': 'application/json, text/plain, */*'
-    }
+const DEFAULT_CONTENT_TYPE = {
+    'Content-type': 'application/x-www-urlencoded'
 };
+
+function setContentTypeIfUnset(headers: any, value: string) {
+    if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+        headers['Content-Type'] = value;
+    }
+}
+
+function getDefaultAdapter(): Function {
+    let instance: AxiosAdapter;
+    if (typeof XMLHttpRequest !== 'undefined') {
+        instance = new XhrAdapter();
+    } else {
+        instance = new WxHttpAdapter();
+    }
+    return instance.init;
+}
+
 
 utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method: string) {
     defaults.headers[method] = {};

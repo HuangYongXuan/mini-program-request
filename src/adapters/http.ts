@@ -2,16 +2,14 @@ import {AxiosAdapter, AxiosPromise, AxiosRequestConfig, AxiosResponse, HttpOptio
 import utils from "../utils";
 import createError from "../core/createError";
 // @ts-ignore
-import url from "url";
+const url = require('url');
 // @ts-ignore
-import zlib from 'zlib';
+const zlib = require('zlib');
 // @ts-ignore
-import http from 'http';
+const http = require('http');
 // @ts-ignore
-import https from 'https';
+const https = require('https');
 import buildURL from "../helpers/buildURL";
-// @ts-ignore
-const pkg = require('./../../package.json');
 
 // @ts-ignore
 import {http as httpFollow, https as httpsFollow} from 'follow-redirects';
@@ -44,7 +42,7 @@ export default class HttpAdapter implements AxiosAdapter {
             let headers = this.config.headers;
 
             if (!headers['User-Agent'] && !headers['user-agent']) {
-                headers['User-Agent'] = 'Axios/' + pkg.version;
+                headers['User-Agent'] = 'Axios';
             }
 
             if (data && !utils.isStream(data)) {

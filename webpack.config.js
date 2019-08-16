@@ -1,9 +1,12 @@
 const path = require('path');
+// const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
 	entry: './src/index.ts',
 	devtool: 'source-map',
+	mode: 'production',
 	module: {
 		rules: [
 			{
@@ -27,15 +30,21 @@ module.exports = {
 		libraryTarget: 'umd'
 	},
 	node: {
-		process: false
+		process: true
 	},
 	devServer: {
 		contentBase: path.join(__dirname, 'dist'),
 		compress: true,
 		port: 9000,
-		index: 'index.html',
+		index: 'index.html'
 	},
 	plugins: [
-		new HtmlWebpackPlugin()
-	]
+		new HtmlWebpackPlugin(),
+		new CleanWebpackPlugin({
+			outputPath: path.resolve(__dirname, 'dist'),
+			verbose: true,
+			dry: false
+		})
+	],
+	target: 'web'
 };

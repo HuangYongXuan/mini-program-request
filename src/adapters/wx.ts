@@ -9,7 +9,6 @@ export default class WxHttpAdapter implements AxiosAdapter {
 
     init(config: AxiosRequestConfig): AxiosPromise<any> {
         return new Promise(function (resolve, reject) {
-            let requestData = config.data;
             let requestHeaders = config.headers;
 
             // @ts-ignore

@@ -1,4 +1,4 @@
-import {AxiosAdapter, AxiosError, AxiosRequestConfig, AxiosResponse} from "../config/HttpConfig";
+import {AxiosError, AxiosRequestConfig, AxiosResponse} from "../config/HttpConfig";
 
 export default function enhanceError(error?: AxiosError, config?: AxiosRequestConfig, code?: string, request?: any, response?: AxiosResponse) {
     error.config = config;

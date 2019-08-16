@@ -5,7 +5,6 @@ import combineURLs from "../helpers/combineURLs";
 import transformData from "./transformData";
 import defaults from "../defaults";
 import isCancel from "../cancel/isCancel";
-import Cancel from "../cancel/Cancel";
 
 function throwIfCancellationRequested(config: AxiosRequestConfig) {
     if (config.cancelToken) {

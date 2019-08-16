@@ -1,5 +1,4 @@
 import utils from "../utils";
-import {AxiosRequestConfig} from "../config/HttpConfig";
 
 export default function mergeConfig(config1: any, config2?: any) {
     config2 = config2 || {};

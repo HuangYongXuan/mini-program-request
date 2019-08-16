@@ -1,17 +1,21 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "moduleResolution": "node",
     "module": "commonjs",
     "target": "es5",
     "jsx": "react",
-    "sourceMap": true,
-    "allowJs": true,
-    "noImplicitAny": true,
+    "allowJs": false,
     "lib": [
       "dom",
-      "es5",
-      "scripthost",
-      "es2015.promise"
+      "es5"
+    ],
+    "typeRoots": [
+      "./node_modules/@types"
     ]
   },
   "exclude": [

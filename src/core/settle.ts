@@ -1,4 +1,4 @@
-import createError, {ErrorMessage} from "./createError";
+import createError from "./createError";
 import {AxiosResponse} from "../config/HttpConfig";
 
 export default function settle(resolve: Function, reject: Function, response: AxiosResponse) {

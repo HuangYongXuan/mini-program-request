@@ -1,14 +1,9 @@
 import InterceptorManager, {InterceptorManagerHandler} from './InterceptorManager'
-import {AxiosRequestConfig, AxiosInstance, AxiosResponse, AxiosInterceptorManager} from "../config/HttpConfig";
+import {AxiosRequestConfig, AxiosResponse, AxiosInterceptorManager} from "../config/HttpConfig";
 import mergeConfig from "./mergeConfig";
 import dispatchRequest from "./dispatchRequest";
 import buildURL from "../helpers/buildURL";
 import utils from "../utils";
-
-interface interceptorsType {
-    request: InterceptorManager,
-    response: InterceptorManager
-}
 
 export default class Axios {
     defaults: AxiosRequestConfig;
