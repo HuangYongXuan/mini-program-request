@@ -1,12 +1,10 @@
 # wx-request
 
+微信小程序和web的http请求
+
 #### 使用 npm:
 
-`$ npm install axios`
-
-#### 使用 bower:
-
-`$ bower install axios`
+`$ npm i @linhan/axios`
 
 #### 执行 GET 请求
 
