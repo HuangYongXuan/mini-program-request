@@ -1,6 +1,6 @@
 {
-  "name": "wx-axios",
-  "version": "1.0.0",
+  "name": "wx-mini-program-axios",
+  "version": "1.0.1",
   "description": "小程序版的Axios 用type script写的 支持浏览器的xhr请求",
   "main": "dist/axios.js",
   "typings": "dist/config/HttpConfig.d.ts",
@@ -13,6 +13,7 @@
     "http",
     "request",
     "wx",
+    "mini-program",
     "wechat",
     "weixin"
   ],

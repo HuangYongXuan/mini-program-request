@@ -1,10 +1,14 @@
-# wx-request
+# wx-mini-program-axios
 
 微信小程序和web的http请求
 
-#### 使用 npm:
+#### 使用 `npm`:
 
-`$ npm i @linhan/axios`
+`$ npm i wx-mini-program-axios`
+
+### 使用`yarn`:
+
+`yarn add wx-mini-program-axios`
 
 #### 执行 GET 请求
 
