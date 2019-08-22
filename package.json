@@ -1,13 +1,21 @@
 {
-  "name": "@linhan/axios",
-  "version": "1.0.3",
+  "name": "wx-axios",
+  "version": "1.0.0",
   "description": "小程序版的Axios 用type script写的 支持浏览器的xhr请求",
   "main": "dist/axios.js",
-  "typings": "dist/axios.d.ts",
+  "typings": "dist/config/HttpConfig.d.ts",
   "repository": "https://github.com/Ysll233/mini-program-request.git",
   "author": "754060604@qq.com",
   "license": "MIT",
   "private": false,
+  "keywords": [
+    "axios",
+    "http",
+    "request",
+    "wx",
+    "wechat",
+    "weixin"
+  ],
   "engines": {
     "node": ">=6.9.1"
   },

@@ -6,6 +6,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": false,
     "moduleResolution": "node",
+    "declaration": true,
+    "declarationDir": "./dist/",
     "module": "commonjs",
     "target": "es5",
     "jsx": "react",
