@@ -444,7 +444,7 @@ axios 依赖原生的 ES6 Promise 实现而被支持.
 #### TypeScript
 axios includes TypeScript definitions.
 ````javascript
-import axios from 'axios';
+import axios from 'wx-mini-program-axios';
 axios.get('/user?ID=12345');
 ````
 
