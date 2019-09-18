@@ -1,6 +1,6 @@
 {
   "name": "wx-mini-program-axios",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "小程序版的Axios 用type script写的 支持浏览器的xhr请求",
   "main": "dist/axios.js",
   "typings": "dist/config/HttpConfig.d.ts",
@@ -41,11 +41,10 @@
     "typescript": "^3.5.3",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.8.0"
+    "webpack-dev-server": "^3.8.0",
+    "is-buffer": "^2.0.3"
   },
   "dependencies": {
-    "is-buffer": "^2.0.3",
-    "wechat-jssdk": "^5.0.2"
   },
   "browser": {
     "./src/adapters/http.js": "./src/adapters/xhr.js"
